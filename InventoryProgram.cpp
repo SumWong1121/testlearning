@@ -20,7 +20,7 @@ double ValidNumInput(string prompt);
 void Display_menu(int &choice);
 void display(int choice);
 void editing(fstream &file, int choice);
-void writingdata(fstream &file, int choice);
+void writingdata(fstream &file);
 INVdata getdata(fstream &file, int choice);
 string formmatingDate(string input);
 
@@ -140,14 +140,12 @@ void editing(fstream &file,int choice)
     {
     Invdata[index].Date = formmatingDate(Invdata[index].Date);
     }
-	writingdata(file,choice);
+	writingdata(file);
 }
 
-void writingdata(fstream &file, int choice)
+void writingdata(fstream &file)
 {
-	switch(choice)
-	{
-    case 1:for(unsigned int index = 0;index < Invdata.size(); index++)
+    for(unsigned int index = 0;index < Invdata.size(); index++)
 			{
                 if(index != (Invdata.size()-1))
 				file << Invdata[index].description << ':' << Invdata[index].quantity <<' '
@@ -158,32 +156,6 @@ void writingdata(fstream &file, int choice)
 					 << Invdata[index].WScost <<' ' << Invdata[index].Rcost << ' '
 					 << Invdata[index].Date;
 			}
-			break;
-	case 3:for(unsigned int index = 0;index < Invdata.size(); index++)
-			{
-                if(index != (Invdata.size()-1))
-				file << Invdata[index].description << ':' << Invdata[index].quantity <<' '
-					 << Invdata[index].WScost <<' ' << Invdata[index].Rcost << ' '
-					 << Invdata[index].Date << ';';
-                else
-                file << Invdata[index].description << ':' << Invdata[index].quantity <<' '
-					 << Invdata[index].WScost <<' ' << Invdata[index].Rcost << ' '
-					 << Invdata[index].Date;
-			}
-			break;
-	case 4:for(unsigned int index = 0;index < (Invdata.size()); index++)
-			{
-                if(index != (Invdata.size()-1))
-				file << Invdata[index].description << ':' << Invdata[index].quantity <<' ' 
-					 << Invdata[index].WScost <<' ' << Invdata[index].Rcost << ' '
-					 << Invdata[index].Date << ';';
-                else
-                file << Invdata[index].description << ':' << Invdata[index].quantity <<' '
-					 << Invdata[index].WScost <<' ' << Invdata[index].Rcost << ' '
-					 << Invdata[index].Date;
-			}
-			break;
-	}
 }
 
 INVdata getdata(fstream &file, int choice)
@@ -210,7 +182,7 @@ INVdata getdata(fstream &file, int choice)
 
 string ValidStrInput(string prompt)
 {
-    string input= "",temp1,mstr,dstr,ystr;
+    string input= "",temp1;
     int month=0,day=0,year=0;
 
     if(prompt == "What is the name of the item:")
@@ -238,13 +210,11 @@ string ValidStrInput(string prompt)
             temp1 += input[index];
             index++;
             }
-            if (month == 0){
-                mstr= temp1;
-                month = atoi(temp1.c_str());}
-            else if (day == 0){
-                dstr = temp1;
-                day = atoi(temp1.c_str());}
-            else {ystr = temp1;year = atoi(temp1.c_str());}
+            if (month == 0)
+                month = atoi(temp1.c_str());
+            else if (day == 0)
+                day = atoi(temp1.c_str());
+            else year = atoi(temp1.c_str());
             if(index == input.length())
                 break;
             else if(input[index] != '/'){
@@ -255,9 +225,9 @@ string ValidStrInput(string prompt)
         }
         if(year > 2016)
             cout << "Invalid Input! Year must before 2016\n";
-        else if(year ==  2016 && month> 10)
-            cout << "Invalid Input!Month must before 10\n";
-        else if(year ==  2016 && month == 10 && (day > 31||day < 1))
+        else if(month> 12 || month < 1)
+            cout << "Invalid Input!Month must within 1-12!\n";
+        else if(day > 31||day < 1)
             cout << "Invalid Input!Day must between  1 - 31!\n";
 
         if(year == 0 || month == 0 || day == 0)
@@ -268,12 +238,12 @@ string ValidStrInput(string prompt)
 
         input ="";
         if(month < 10 && day < 10)
-            input = " 0" + mstr + "/0" + dstr + "/" + ystr;
+            input = " 0" + to_string(month) + "/0" + to_string(day) + "/" + to_string(year);
         else if(month < 10)
-            input = " 0" + mstr + "/" + dstr + "/" + ystr;
+            input = " 0" + to_string(month) + "/" + to_string(day) + "/" + to_string(year);
         else if(day < 10)
-            input = " " + mstr + "/0" + dstr + "/" + ystr;
-        else input = " " + mstr + "/" + dstr + "/" + ystr;
+            input = " " + to_string(month) + "/0" + to_string(day) + "/" + to_string(year);
+        else input = " " + to_string(month) + "/" + to_string(day) + "/" + to_string(year);
         }
     }
 
