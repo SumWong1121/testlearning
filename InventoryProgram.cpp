@@ -42,6 +42,11 @@ int main()
 		{
 			Invdata.push_back(getdata(file,choice));
 		}
+		for(unsigned int i = 0;i < Invdata.size();i++)
+		{
+		if(Invdata[i].description == "")
+		Invdata.erase(Invdata.begin()+(i-1));;
+		}
 		Display_menu(choice);
 		switch(choice)
 		{
@@ -223,7 +228,11 @@ string ValidStrInput(string prompt)
             cout << prompt;
             cin >> input;
 
+<<<<<<< HEAD
 	    month = 0;day = 0; year = 0;temp1 ="";
+=======
+	month = 0;day = 0; year = 0;
+>>>>>>> origin/Sum's-Version
          for(unsigned int index = 0; index < input.length(); index++){
             while(isdigit(input[index]))
             {
