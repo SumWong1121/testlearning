@@ -204,6 +204,7 @@ string ValidStrInput(string prompt)
             cout << prompt;
             cin >> input;
 
+	month = 0;day = 0; year = 0;
          for(unsigned int index = 0; index < input.length(); index++){
             while(isdigit(input[index]))
             {
