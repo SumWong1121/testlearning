@@ -42,6 +42,11 @@ int main()
 		{
 			Invdata.push_back(getdata(file,choice));
 		}
+		for(unsigned int i = 0;i < Invdata.size();i++)
+		{
+		if(Invdata[i].description == "")
+		Invdata.erase(Invdata.begin()+(i-1));;
+		}
 		Display_menu(choice);
 		switch(choice)
 		{
