@@ -7,13 +7,13 @@
 using namespace std;
 
 struct INVdata{
-	string description;
-	int quantity;
-	double WScost, Rcost;
-	string Date;
+	string description ="";
+	int quantity = 0;
+	double WScost = 0, Rcost = 0;
+	string Date = "";
 };
 
- vector<INVdata> Invdata;
+vector<INVdata> Invdata;
 
 string ValidStrInput(string prompt);
 double ValidNumInput(string prompt);
@@ -38,7 +38,7 @@ int main()
 			exit(EXIT_FAILURE);
 		}
 		
-		while(!(file.eof()))
+		while(!(file.eof()) || file.good())
 		{
 			Invdata.push_back(getdata(file,choice));
 		}
@@ -81,23 +81,32 @@ void display(int choice)
 {
 	switch(choice)
 	{
-	case 2:for(unsigned int index = 0;index < Invdata.size(); index++)
-	{
-		cout << (index+1) << ". " <<	Invdata[index].description << endl;
-		cout << "Quantity: " << Invdata[index].quantity << endl;
-		cout << "WholeSale:" << Invdata[index].WScost << endl;
-		cout << "Retail:   " << Invdata[index].Rcost << endl;
-		cout << "Date:    " << Invdata[index].Date << endl << endl;
-	}
-    if(Invdata.size() == 0)
-        cout << "No data found!\n";
+	case 2:    if(Invdata.size() == 1 && Invdata[0].description == "")
+                    cout << "No data found!\n";
+               else
+               {
+                    for(unsigned int index = 0;index < Invdata.size(); index++)
+	                {
+		            cout << (index+1) << ". " <<	Invdata[index].description << endl;
+		            cout << "Quantity: " << Invdata[index].quantity << endl;
+		            cout << "WholeSale:" << Invdata[index].WScost << endl;
+		            cout << "Retail:   " << Invdata[index].Rcost << endl;
+		            cout << "Date:    " << Invdata[index].Date << endl << endl;
+	                }
+               }
         break;
-	case 3: for(unsigned int index = 0;index < Invdata.size(); index++)
+	case 3:   if(Invdata.size() == 1 && Invdata[0].description == "")
+                    cout << "No data found!";
+               else 
+        for(unsigned int index = 0;index < Invdata.size(); index++)
 		{
 		cout << (index+1) << "." <<	Invdata[index].description << endl;
 		}
 		break;
-	case 4: for(unsigned int index = 0;index < Invdata.size(); index++)
+	case 4:    if(Invdata.size() == 1 && Invdata[0].description == "")
+                    cout << "No data found!";
+               else
+        for(unsigned int index = 0;index < Invdata.size(); index++)
 		{
 		cout << (index+1) << "." <<	Invdata[index].description << endl;
 		}
@@ -111,28 +120,38 @@ void editing(fstream &file,int choice)
 	file.close();
 	switch(choice)
 	{
-		case 1: Invdata.push_back(getdata(file,choice));break;
-		case 3:display(choice);
+		case 1: if(Invdata[0].description =="")
+                        Invdata[0] = getdata(file,choice);
+                else
+                    Invdata.push_back(getdata(file,choice));
+            break;
+		case 3:display(choice);   
+            if(Invdata.size() == 1 && Invdata[0].description == "")
+                cout << "Please add a new data first!\n";
+               else{
 			   cout << "Which record you want to edit?\n";
-			   while((temp-1) < 0 || (temp-1) > Invdata.size()){
+			   while(temp <= 0 || temp > Invdata.size()){
 			   cout << "ANS:";
                if (!(cin >> temp))
                    {cout << "Invalid input!Please put number only!\n";cin.clear();cin.ignore(10000,'\n');}
-               if((temp-1) < 0 || (temp-1) > Invdata.size())
+               if(temp <= 0 || temp > Invdata.size())
 					cout << "No record found!Please choose again!\n";
    			    }
-                Invdata[temp-1] = getdata(file,choice);
+               Invdata[temp-1] = getdata(file,choice);}
                 break;
         case 4:display(choice);
+               if(Invdata.size() == 1 && Invdata[0].description == "")
+               cout << "Please add a new data first!\n";
+               else{
 			   cout << "Which record you want to delete?\n";
-			   while((temp-1) < 0 || (temp-1) > Invdata.size()){
+			   while(temp <= 0 || temp > Invdata.size()){
 			   cout << "ANS:";
                if (!(cin >> temp))
                    {cout << "Invalid input!Please put number only!\n";cin.clear();cin.ignore(10000,'\n');}
-               if((temp-1) < 0 || (temp-1) > Invdata.size())
+               if(temp <= 0 || temp > Invdata.size())
 					cout << "No record found!Please choose again!\n";
    			    }
-                Invdata.erase(Invdata.begin()+(temp-1));
+               Invdata.erase(Invdata.begin()+(temp-1));}
                 break;
 	}
     file.open("inventorydata.txt",ios::in | ios::out |ios::binary|ios::trunc);
@@ -204,6 +223,7 @@ string ValidStrInput(string prompt)
             cout << prompt;
             cin >> input;
 
+	    month = 0;day = 0; year = 0;temp1 ="";
          for(unsigned int index = 0; index < input.length(); index++){
             while(isdigit(input[index]))
             {
