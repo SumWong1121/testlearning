@@ -227,12 +227,7 @@ string ValidStrInput(string prompt)
         {
             cout << prompt;
             cin >> input;
-
-<<<<<<< HEAD
 	    month = 0;day = 0; year = 0;temp1 ="";
-=======
-	month = 0;day = 0; year = 0;
->>>>>>> origin/Sum's-Version
          for(unsigned int index = 0; index < input.length(); index++){
             while(isdigit(input[index]))
             {
