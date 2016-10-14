@@ -8,8 +8,8 @@ private:
 int itemNumber,quantity;
 double cost,totalCost;
 public:
-void Default();
-void Constructor2(int iNum, double cost, int quantity);
+  Inventory{itemNumber = 0; quantity = 0;cost = 0; totalcost = 0;}
+void Constructor(int iNum, double cost, int quantity);
 int setitemNumber();
 int setQuantity();
 double setCost();
@@ -18,11 +18,6 @@ void getItemNumber();
 void getQuantity();
 void getCost();
 void getTotalcost();
-}
-
-Inventory::Default()
-{
-  itemNumber = 0; quantity = 0; cost = 0; totalcost = 0;
 }
 
 Inventory::Constructor(int iNum, double cos, int quan)
