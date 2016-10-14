@@ -28,4 +28,6 @@ Inventory::Constructor(int iNum, double cos, int quan)
   totalcost = setTotalCost(cost,quantity);
 }
 
-Inventory::setitemNumber{return iNum;}
+Inventory::setitemNumber(){return iNum;}
+Inventory::setQuantity(){return quantity;}
+Inventory::setCost(){return ;}
