@@ -4,10 +4,10 @@ using namespace std;
 
 class Inventory{
 private:
-	int m_itemNumber;
-	int m_quantity;
-	double m_cost;
-	double m_totalCost;
+	int m_itemNumber = 0;
+	int m_quantity = 0;
+	double m_cost = 0;
+	double m_totalCost = 0;
 
 public:
 	Inventory();
@@ -17,7 +17,7 @@ public:
 	void setQuantity(int quantity);
 	void setCost(double cost);
 	void setTotalCost();
-	
+
 	int getItemNumber();
 	int getQuantity();
 	double getCost();
@@ -34,9 +34,24 @@ Inventory::Inventory(){
 }
 
 Inventory::Inventory(int itemNum, int quantity, double cost){
-	m_itemNumber = itemNum;
-	m_quantity = quantity;
-	m_cost = cost;
+	if (itemNum < 0){
+		cout << "Value cannot be less than 0." << endl;
+	}
+	else {
+		m_itemNumber = itemNum;
+	}
+	if (quantity < 0){
+		cout << "Value cannot be less than 0." << endl;
+	}
+	else {
+		m_quantity = quantity;
+	}
+	if (cost < 0){
+		cout << "Value cannot be less than 0." << endl;
+	}
+	else {
+		m_cost = cost;
+	}
 	setTotalCost();
 }
 
@@ -88,7 +103,7 @@ double Inventory::getTotalCost(){
 }
 
 /******************
-	Driver Program
+Driver Program
 *******************/
 
 int main(){
@@ -99,7 +114,7 @@ int main(){
 	myItem.setCost(4.99);
 	cout << myItem.getCost() << endl;
 
-	Inventory otherItem(1, 12, 4.99);
+	Inventory otherItem(-1, 12, 4.99);
 	cout << otherItem.getItemNumber() << endl;
 	cout << otherItem.getQuantity() << endl;
 	cout << otherItem.getCost() << endl;
