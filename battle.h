@@ -276,7 +276,7 @@ public:
         {
             if(rand()% 100 > me.Accurate && heal != true)
                 miss = true;
-            if(rand()% 100 > me.Crit)
+            if(rand()% 100 < me.Crit)
                 crit = true;
             if(run == false && miss == false) 
             {
@@ -301,7 +301,7 @@ public:
                                     damage -= you.EnDef;    
                             if(damage < 0)
                                     damage = 0;
-                            if(crit = true)
+                            if(crit == true)
                                     damage *= 2;
                                 you.EnemyHealth -= damage;
                                me.Mp -=9;break;
