@@ -10,13 +10,20 @@
 #include "Shop.h"
 #include "battle.h"
 #include <windows.h>
+#include <conio.h>
 using namespace std;
 class Game
 {
 private:
     bool getsave = false;
     char playerMove = ' ';
+    playerstat me;
+    shop a;
+    Enemy b;
+    battle c;
 public:    
+    Game() {}
+    ~Game() {cout << "Game closed!\n";}
     void run()
     {
         Room basement(15, 35);
@@ -30,14 +37,16 @@ public:
         playerC ant(getsave);
         do{
         system("cls");
+        me.load();
         basement.enterObject(ant.getYCoor(15), ant.getXCoor(35), ant.getPicture());
         basement.displayRoom();
         playerMove = getchoice(ant.getYCoor(15), ant.getXCoor(35));
+        cout << playerMove << endl;
                     switch (playerMove){
-                    case 'Z': {playerstat me;me.save();cout << "Saved!\n";Sleep(2000);}break;
+                    case 'Z': me.save();cout << "Saved!\n";Sleep(2000);break;
                     case 'E': break;
-                    case 'Q': {shop a;}break;
-                    case 'C': {playerstat me1;me1.load(); me1.displayStat();}break;
+                    case 'Q': a.enter_shop();break;
+                    case 'C': me.load(); me.displayStat();break;
                     case 'W': {basement.setblank(ant.getYCoor(15), ant.getXCoor(35));ant.setYCoor(ant.getYCoor(15) - 1);} break;
                     case 'A': {basement.setblank(ant.getYCoor(15), ant.getXCoor(35));ant.setXCoor(ant.getXCoor(35) - 1);} break;
                     case 'D': {basement.setblank(ant.getYCoor(15), ant.getXCoor(35));ant.setXCoor(ant.getXCoor(35) + 1);} break;
@@ -47,19 +56,17 @@ public:
                     }
                     if(playerMove != 'E' && playerMove !='Z' && playerMove!='Q' && playerMove!='C')
                     {
-                        Enemy b; 
                         if(b.gen_enemy()==true)
                         {
-                            battle c;
                             c.battleSequence();
                         }
                     }
                     else if(playerMove == 'E')
                     {
-                    cout << "Thz for playing!\n";
                     Sleep(2000);
                     }
         }while (playerMove !='E');
+        cout << "Thz for playing!\n";
     }
     void displaymenu()
     {
@@ -89,13 +96,14 @@ public:
     char getchoice(unsigned int yCoor, unsigned int xCoor)
     {   
         bool wall = true;
-        string nocheat;
+        //string nocheat;
         char choice ='x';
         while(choice !='E' && choice !='Q' && choice !='Z' && choice !='C' && choice !='W' && choice !='A' && choice !='S' && choice !='D' || wall != false)
         {wall = false;
         cout << "Plz enter your choice here:";
-        cin >> nocheat;
-        choice = toupper(nocheat[0]);
+        //cin >> nocheat;
+        //choice = toupper(nocheat[0]);
+        choice = toupper(_getch());
         if(choice !='E' && choice !='Q' && choice !='Z' && choice !='C' && choice !='W' && choice !='A' && choice !='S' && choice !='D')
             cout << "Invalid Input!\n";
         switch(choice)

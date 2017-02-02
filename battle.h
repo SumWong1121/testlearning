@@ -21,10 +21,12 @@ public:
     bool playerstart = false;
     int tempPdef = 0, tempEdef = 0;
     int counter = 0;
+    battle() {}
     void battleSequence()
     {
         me.load();
         srand(seed);
+        you.gen_enemystat(me.Level);
         displaymetenemy();
         you.EnemyMaxHealth = (rand()% you.EnemyMaxHealth + you.EnemyHealth);
         you.EnemyHealth = you.EnemyMaxHealth;
@@ -335,7 +337,7 @@ public:
         }
         else
         {    
-            if(rand()%100 < me.Evasion && you.heal != true)
+            if( (rand()%100 < me.Evasion) && you.heal != true)
                 dodge = true;
             if(dodge == false)
             {

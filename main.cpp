@@ -4,5 +4,5 @@ int main()
 {
     Game a;
     a.run();
-    return 0;
+    cout << "Saving before exit!";
 }

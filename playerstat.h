@@ -14,6 +14,7 @@ private:
     fstream PD;
     bool upgrade = false;
 public:
+    playerstat() {}
     string name = "";
     int  currentHp = 0;
     unsigned int Level = 0,
@@ -50,7 +51,9 @@ public:
     void GenPlayerStat()
     {
         srand(seed);
-        cout << "What is th name of your character?";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "What is the name of your character?";
         getline(cin ,name);
         do
         {

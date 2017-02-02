@@ -31,7 +31,7 @@ public:
         setGold(me.gold);
         setPicture('^');
         me.save();
-    }    
+    } 
     //Functions
     void setName(string name){m_name = name;}
     void setHp(unsigned int hp){m_hp = hp;}

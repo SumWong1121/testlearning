@@ -18,6 +18,7 @@ private:
 public:
     unsigned int seed = time(0);
     string EnemyName;
+    unsigned int no = 0;
 	int EnemyHealth = 0;
 	int EnemyMaxHealth = 0;
 	int EnemyMP = 0;
@@ -40,18 +41,7 @@ public:
     Enemy()
     {
         createdatabase();
-        srand(seed);
-        switch(gen_one())
-        {
-        case 0:getdata(EAposition[0],EDposition[0]);break;
-        case 1:getdata(EAposition[1],EDposition[1]);break;
-        case 2:getdata(EAposition[2],EDposition[2]);break;
-        case 3:getdata(EAposition[3],EDposition[3]);break;
-        case 4:getdata(EAposition[4],EDposition[4]);break;
-        }
-        gen_enemystat((rand() % 50));
     }
-
     void createdatabase()
     {
         int position;
@@ -76,10 +66,24 @@ public:
         return yesno;
     }
 
-    int gen_one(){return (rand()%5);}
+    int gen_one()
+    {
+        return (rand() % 5);
+    }
 
     void gen_enemystat(int playerlevel)
     {
+        seed = time(0);
+        srand(seed);
+        no = gen_one();
+        switch(no)
+        {
+        case 0:getdata(EAposition[0],EDposition[0]);break;
+        case 1:getdata(EAposition[1],EDposition[1]);break;
+        case 2:getdata(EAposition[2],EDposition[2]);break;
+        case 3:getdata(EAposition[3],EDposition[3]);break;
+        case 4:getdata(EAposition[4],EDposition[4]);break;
+        }
         EnemyHealth += (playerlevel* 1.25 + (rand() % 10));
 	    do
         {

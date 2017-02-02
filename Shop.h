@@ -14,10 +14,12 @@ private:
 	int choice;
     playerstat playerinfo;
 public:
-	shop() : gearname("Weapon"), requiregold(0)
-	{
+	shop() : gearname("Weapon"), requiregold(0){}
+    void enter_shop()
+    {
         playerinfo.load();
 		welcomemessage();
+        choice = 0;
 		while (choice != 5)
 		{
 		system("cls");
@@ -27,9 +29,10 @@ public:
 		calculation();
 		executebuying();
 		}
-		goodbyemessage();
+        goodbyemessage();
         playerinfo.save();
-	}
+    }
+
 	void welcomemessage()
 	{
 		cout << "-----------------------------" << endl;
@@ -86,10 +89,10 @@ public:
 			{
 				switch (choice)
 				{
-				case 1: requiregold = 3 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.25);
-				case 2: requiregold = 5 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.125);
-				case 3: requiregold = 2 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.5);
-				case 4: requiregold = 5 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.125);
+				case 1: requiregold = 3 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.25); break;
+				case 2: requiregold = 5 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.125); break;
+				case 3: requiregold = 2 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.5); break;
+				case 4: requiregold = 5 + static_cast <int>(playerinfo.Gearlevel[choice-1] * 1.125); break;
 				}
 			}
 		}
@@ -123,10 +126,10 @@ public:
                 cout <<"\n Remaining Gold: " << playerinfo.gold << endl;
                 switch (choice)
 				{
-                case 1: cout << "Sword Level: " << playerinfo.Gearlevel[choice-1] << endl;
-				case 2: cout << "Head Level: " << playerinfo.Gearlevel[choice-1] << endl;
-				case 3: cout << "Armor Level: " << playerinfo.Gearlevel[choice-1] << endl;
-				case 4: cout << "Shoe Level: " << playerinfo.Gearlevel[choice-1] << endl;
+                case 1: cout << "Sword Level: " << playerinfo.Gearlevel[choice-1] << endl; break;
+				case 2: cout << "Head Level: " << playerinfo.Gearlevel[choice-1] << endl; break;
+				case 3: cout << "Armor Level: " << playerinfo.Gearlevel[choice-1] << endl; break;
+				case 4: cout << "Shoe Level: " << playerinfo.Gearlevel[choice-1] << endl; break;
 				}
             }
 			thankyoumessage();
