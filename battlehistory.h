@@ -5,4 +5,5 @@
 //make sure that player can know which battle got what
 
 //and design a battle history page to let player to check the records
+//enemy name get from battle.h(you.EnemyName)
 #endif
