@@ -11,17 +11,15 @@
 
 #include <cstdlib>
 #include "battle.h"
+#include "playerstat.h"
 #include <string>
 #include <fstream>
 
 class battle_history
 {
-	private:
-		std::size_t battle_count;
-		
 	public:
 		battle_history();
-		void record(battle player);
+		void record(battle player, playerstat info);
 		void retreive(char command);
 
 };
