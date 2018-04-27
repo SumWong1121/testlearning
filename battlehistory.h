@@ -8,8 +8,8 @@
 //enemy name get from battle.h(you.EnemyName)
 //enemy gold get from battle.h(you.Gold)
 
+
 #include <cstdlib>
-#include "game.h"
 #include "battle.h"
 #include <string>
 #include <fstream>
@@ -21,7 +21,7 @@ class battle_history
 		
 	public:
 		battle_history();
-		void record(Game player);
+		void record(battle player);
 		void retreive(char command);
 
 };
