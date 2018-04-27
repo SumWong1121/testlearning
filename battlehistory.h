@@ -18,8 +18,7 @@
 class battle_history
 {
 	public:
-		battle_history();
-		void record(battle player, playerstat info);
+		void record(battle& player, playerstat& info);
 		void retreive(char command);
 
 };
