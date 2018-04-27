@@ -6,4 +6,5 @@
 
 //and design a battle history page to let player to check the records
 //enemy name get from battle.h(you.EnemyName)
+//enemy gold get from battle.h(you.Gold)
 #endif
