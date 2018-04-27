@@ -9,6 +9,7 @@
 //enemy gold get from battle.h(you.Gold)
 
 #include <cstdlib>
+#include "game.h"
 #include "battle.h"
 #include <string>
 #include <fstream>
@@ -17,14 +18,14 @@ class battle_history
 {
 	private:
 		std::size_t battle_count;
-		int collected_gold;
-		string name;
+		
 	public:
 		battle_history();
-		void record();
+		void record(Game player);
 		void retreive(char command);
 
 };
+
 
 
 
