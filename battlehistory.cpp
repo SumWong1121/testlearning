@@ -17,7 +17,7 @@ using namespace std;
 
 void battle_history::record(battle& player, playerstat& info)
 {
-	int battle_count = info.battlecount; //GIVE ME THIS 
+	int battle_count = info.Bcount;
 	int gold = player.you.Gold;
 	string name = player.you.EnemyName;
 	
