@@ -28,6 +28,7 @@ public:
         Luck = 0,
         Crit = 10,
         gold = 0,
+        Bcount =0,
         Patt = 0,
         Matt = 0,
         Pdef = 0,
