@@ -163,7 +163,7 @@ void battle_history::retreive(char command)
 				return;
 			}
 			
-			print = inFile.get()
+			print = inFile.get();
 			while(!inFile.eof())
 			{
 				cout << print;
@@ -175,6 +175,26 @@ void battle_history::retreive(char command)
 	}
 	else if(command == 'e' || command == "E")
 	{
-		if(current = //not yet done
+		current++;
+		
+		postfix = get_postfix(-1,current);
+		filename.append(postfix);
+		
+		inFile(filename,ios::in | ios::binary);
+		if(!inFile)
+		{
+			cout << "There is no more history" << endl;
+			currenet--;
+			return;
+		}
+		
+		
+		print = inFile.get();
+		while(!inFile.eof())
+		{
+				cout << print;
+				print = inFile.get();
+		}
+		inFile.close();
 	}
 }
