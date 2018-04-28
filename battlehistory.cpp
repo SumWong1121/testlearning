@@ -142,7 +142,7 @@ void battle_history::retreive(char command)
 		inFile.close();
 		
 	}
-	else if(command == 'q' || command == "Q")
+	else if(command == 'q' || command == 'Q')
 	{
 		if(current == 1)
 		{
@@ -173,7 +173,7 @@ void battle_history::retreive(char command)
 			
 		}
 	}
-	else if(command == 'e' || command == "E")
+	else if(command == 'e' || command == 'E')
 	{
 		current++;
 		
