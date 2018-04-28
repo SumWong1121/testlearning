@@ -131,6 +131,7 @@ public:
         run = false;
         counter = 0;
         playerstart = false;
+	me.Bcount++;
         me.save();
     }//enemy met
 
