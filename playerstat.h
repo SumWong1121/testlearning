@@ -229,7 +229,7 @@ public:
         PD.open("Playerdata.dat",ios::out|ios::binary);
         PD << name  << ":" << Str << " " << Int << " " << Dex << " " << Luck << " "
             << gold << " " << Gearlevel[0] << " " << Gearlevel[1] << " " << Gearlevel[2] << " " << Gearlevel[3];
-        PD << " " << Level << " " << maxstatpoint;
+        PD << " " << Level << " " << maxstatpoint << " " << Bcount;
         PD.close();
     }
     void load()
@@ -238,7 +238,7 @@ public:
         getline(PD,name,':');
         PD >> Str >> Int >> Dex >> Luck >> gold
             >> Gearlevel[0] >> Gearlevel[1] >> Gearlevel[2] >> Gearlevel[3];
-        PD >> Level >> maxstatpoint;
+        PD >> Level >> maxstatpoint >> Bcount;
         PD.close();
         calculation();
     }
