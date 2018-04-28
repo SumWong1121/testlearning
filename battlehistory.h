@@ -9,7 +9,6 @@
 //enemy gold get from battle.h(you.Gold)
 
 
-#include <cstdlib>
 #include "battle.h"
 #include "playerstat.h"
 #include <string>
@@ -17,14 +16,14 @@
 
 class battle_history
 {
+	//private:
+		//int number_pages;
 	public:
+		//battle_history();
 		void record(battle& player, playerstat& info);
 		void retreive(char command);
-
+		void print(int count, int gold, string name, int special = 0); //special: 0-win, 1-run, 2-dead
+		//Print to file
+		string get_postfix(int count = -1, int page_in = -1);
 };
-
-
-
-
-
 #endif
