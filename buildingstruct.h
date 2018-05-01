@@ -4,5 +4,6 @@
                     lake
                     tree
                     mountains
-                    hill*/
+                    hill
+                    doorway*/
 //things need to be included in the structure:1.total size, 2.designed char for the print out
