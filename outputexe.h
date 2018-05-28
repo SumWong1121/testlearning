@@ -8,7 +8,7 @@ private:
   SDL_Window* gWindow;
   bool gIR;
 public:
-  CWindow
+  CWindow()
   {
     gWindow = SDL_CreateWindow(
     "InfinityDungeon.exe",
