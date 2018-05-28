@@ -7,16 +7,18 @@ class CWindow
 private:
   SDL_Window* gWindow;
   bool gIR;
-
-gWindow = SDL_CreateWindow(
-"InfinityDungeon.exe",
-100,
-100,
-1024,
-768,
-0
-);
-
-if(!gWindow){SDL_Log("Failed to create window: %s", SDL_GetError());}
+public:
+  CWindow
+  {
+    gWindow = SDL_CreateWindow(
+    "InfinityDungeon.exe",
+    100,
+    100,
+    1024,
+    768,
+    0
+    );
+    if(!gWindow){SDL_Log("Failed to create window: %s", SDL_GetError());}
+  }
 }
 #endif
