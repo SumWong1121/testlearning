@@ -2,7 +2,13 @@
 #define start_h
 #include <iostream>
 
-mWindow = SDL_CreateWindow(
+class CWindow
+{
+private:
+  SDL_Window* gWindow;
+  bool gIR;
+
+gWindow = SDL_CreateWindow(
 "InfinityDungeon.exe",
 100,
 100,
@@ -11,6 +17,6 @@ mWindow = SDL_CreateWindow(
 0
 );
 
-if(!mWindow){SDL_Log("Failed to create window: %s", SDL_GetError());}
-
+if(!gWindow){SDL_Log("Failed to create window: %s", SDL_GetError());}
+}
 #endif
